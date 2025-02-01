@@ -11,9 +11,9 @@ LRESULT CALLBACK WindProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam) {
 
     switch (msg) {
     case WM_CREATE:
-    { //Event fired when the window will be created
+    {   //Event fired when the window will be created
         Window* window = (Window*)((LPCREATESTRUCT)lparam)->lpCreateParams;
-        // .. and then stored for later lookup
+        //and then stored for later lookup
         SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)window);
         window->OnCreate();
         break;
@@ -44,7 +44,7 @@ bool Window::Init()
     wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
     wc.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
     wc.hInstance = NULL;
-    wc.lpszClassName = (L"MyWindowClass");
+    wc.lpszClassName = (L"WindowClass");
     wc.lpszMenuName = (L"");
     wc.style = NULL;
     wc.lpfnWndProc = &WindProc;
@@ -55,8 +55,8 @@ bool Window::Init()
     }
 
     //Create window
-    m_hwnd = ::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, L"MyWindowClass",
-                    L"AeroEngine", WS_OVERLAPPEDWINDOW,
+    m_hwnd = ::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, L"WindowClass",
+                    L"AeroEngine - Using DX11", WS_OVERLAPPEDWINDOW,
                     CW_USEDEFAULT, CW_USEDEFAULT, 1024, 768,
                     NULL, NULL, NULL, this);
 
@@ -104,6 +104,10 @@ bool Window::Release()
 bool Window::IsRun()
 {
     return m_isRun;
+}
+
+void Window::OnCreate()
+{
 }
 
 void Window::OnDestroy()

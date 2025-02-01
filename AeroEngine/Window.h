@@ -15,13 +15,13 @@ public:
 	bool IsRun();
 
 	//Events
-	virtual void OnCreate() = 0;
+	virtual void OnCreate();
 	virtual void OnUpdate() = 0;
 	virtual void OnDestroy();
 
 protected:
 
 	HWND m_hwnd;
-	bool m_isRun;
+	bool m_isRun; //Is the window running
 };
 
